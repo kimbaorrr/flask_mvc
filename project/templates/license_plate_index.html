@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,"/>
+    <title>{{ page['title'] }}</title>
+    <meta name="description" content="{{ page['title'] }} của Nguyễn Kim Bảo"/>
+    <meta name="keywords" content="Python, Keras, Tensorflow, Image Classification, Kaggle">
+    <meta name="author" content="Nguyễn Kim Bảo (BaoIT)">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.css">
+</head>
+<body>
+<div class="container-fluid d-flex max-vh-100 max-vw-100 justify-content-between">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-5 col-sm-12">
+                <p class="text-danger fw-bold text-center pt-2 pb-1" style="font-size: 28px;margin: 0;">
+                    {{ page['title'] }}
+                </p>
+                <p class="text-center text-secondary">&copy; {{ page['copyright'] }}</p>
+                <p class="text-center pb-1">=> Trained on Dataset: <a
+                        href="{{ page['dataset_url'] }}"
+                        class="text-decoration-none" target="_blank">{{ page['dataset_name'] }}</a> <=</p>
+                <form id="f_DuDoan" action="{{ page['project_url'] }}" enctype="multipart/form-data" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <input type="file" class="form-control" name="file" id="file" required/>
+                        </div>
+                        <div class="col-auto">
+                            <button id="Submit_DuDoan" class="g-recaptcha btn btn-primary"
+                                    data-sitekey="{{ page['SITE_KEY'] }}"
+                                    data-callback='onSubmit'
+                                    data-action='submit'>Dự đoán
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <img id="Show_Image" class="pt-4 img-fluid" src="{{ page['image'] }}" width="100%" height="100%" alt=""
+                     loading="lazy"
+                />
+            </div>
+        </div>
+    </div>
+</div>
+<plugins>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.1/apexcharts.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        function onSubmit(token) {
+            let applicationForm = document.getElementById("f_DuDoan");
+            if (applicationForm.checkValidity()) {
+                document.getElementById("f_DuDoan").submit();
+                document.getElementById("Show_Image").setAttribute("src", "https://baoit.xyz/assets/ico/loading.gif");
+            } else {
+                applicationForm.reportValidity();
+            }
+        }
+    </script>
+</plugins>
+</body>
+</html>

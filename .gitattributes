@@ -1,0 +1,2 @@
+project/models_h5/*.h5 filter=lfs diff=lfs merge=lfs -text
+project/models_h5/*.pt filter=lfs diff=lfs merge=lfs -text
