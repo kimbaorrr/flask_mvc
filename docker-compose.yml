@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  flask_mvc:
+    container_name: flask_mvc
+    network_mode: bridge
+    image: kimbaorrr/flask_mvc:latest
+    ports:
+      - "127.0.0.1:5003:5003"
+    restart: always
+    volumes:
+    - /mnt/DATA/Web/Store/ai_project/models_h5:/models_h5
+    - /mnt/DATA/Web/Store/ai_project:/imgs
